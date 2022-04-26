@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrizes</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="scripts.js"></script>
+</head>
+<body>
+    <div id="options">
+        <label for="ordem"> Ordem da Matriz</label>
+        <input type="number" id="ordem"></Input>
+        <label for="op">Operações</label>
+        <select name="op" id="op" onchange="ops()">
+            <option value="0"> Escolha</option>
+            <option value="1">Determinante</option>
+            <option value="2">Inversa</option>
+            <option value="3">Soma</option>
+            <option value="4">Subtração</option>
+            <option value="5">Multiplicação</option>
+        </select>
+        <button onclick="createTable()">Enviar</button>
+    </div>
+
+    <br><br>
+
+    <div id="table1"></div>
+
+    <br><br>
+
+    <div id="table2"></div>
+</body>
+</html>
