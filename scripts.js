@@ -4,11 +4,12 @@ function createTable() {
     elemento_pai.innerText = 'Matriz A';
     let table = document.createElement('table');
     table.setAttribute('id', 'matrizA')
+    elemento_pai.appendChild(table)
     let ordem = document.getElementById('ordem').value;
 
     for (let i = 0; i < ordem; i++) {
         let row = document.createElement('tr');
-        elemento_pai.appendChild(row)
+        table.appendChild(row)
 
         for (let j = 0; j < ordem; j++) {
             let column = document.createElement('td');
@@ -22,11 +23,12 @@ function createTable() {
     elemento_pai = document.getElementById('table2');
     elemento_pai.innerText = 'Matriz B';
     table = document.createElement('table');
+    elemento_pai.appendChild(table);
     table.setAttribute('id', 'matrizB');
 
     for (let i = 0; i < ordem; i++) {
         let row = document.createElement('tr');
-        elemento_pai.appendChild(row)
+        table.appendChild(row)
 
         for (let j = 0; j < ordem; j++) {
             let column = document.createElement('td');
@@ -59,31 +61,30 @@ function ops() {
         }
     }
 
-    switch(op){
+    switch (op) {
         case 1:
             console.log(det(a))
+            resultado(det(a));
             break;
         case 2:
             console.log(inversa(a, det(a)));
+            resultado(inversa(a, det(a)));
             break;
         case 3:
-            console.log(a)
-            console.log(b)
-            
-            console.log(soma(a, b))
+            resultado(soma(a, b));
             break;
         case 4:
-            console.log(sub(a, b))
+            resultado(sub(a, b))
             break;
-        case 5: 
-            console.log(mult(a, b))
+        case 5:
+            resultado(mult(a, b))
             break;
     }
 }
 
 function inversa(a, det) {
     var cofA = [];
-    var cofInv = [];    
+    var cofInv = [];
 
     for (var i = 0; i < a.length; i++) {
         cofA[i] = [];
@@ -95,7 +96,7 @@ function inversa(a, det) {
     for (var i = 0; i < a.length; i++) {
         cofInv[i] = [];
         for (var j = 0; j < a.length; j++) {
-            cofInv[i][j] = cofA[j][i]/det
+            cofInv[i][j] = (cofA[j][i] / det).toFixed(3);
         }
     }
     return (cofInv);
@@ -146,7 +147,7 @@ function cof(a, col, lin) {
     return (Math.pow(-1, lin + col) * det(menor))
 }
 
-function soma(a, b){
+function soma(a, b) {
     var resultado = [];
     for (var i = 0; i < a.length; i++) {
         resultado[i] = [];
@@ -157,7 +158,7 @@ function soma(a, b){
     return resultado;
 }
 
-function sub(a, b){
+function sub(a, b) {
     var resultado = [];
     for (var i = 0; i < a.length; i++) {
         resultado[i] = [];
@@ -168,18 +169,45 @@ function sub(a, b){
     return resultado;
 }
 
-function mult(a, b){
+function mult(a, b) {
     var resultado = [];
     for (var i = 0; i < a.length; i++) {
         resultado[i] = [];
-        for (var j = 0; j < a.length; j++){
+        for (var j = 0; j < a.length; j++) {
             resultado[i][j] = 0;
-            for (var k = 0; k < a.length; k++){
+            for (var k = 0; k < a.length; k++) {
                 resultado[i][j] += a[i][k] * b[k][j];
             }
         }
     }
-
     return resultado;
+}
 
+function resultado(a) {
+    
+    var elemento_pai = document.getElementById('result');
+    elemento_pai.removeChild());
+    var table = createElement('table')
+    table.setAttribute('id', 'tableResult')
+    var ordem = a.length;
+
+    if (Array.isArray(a)) {
+        for (let i = 0; i < ordem; i++) {
+            let row = document.createElement('tr');
+            table.appendChild(row)
+
+            for (let j = 0; j < ordem; j++) {
+                let column = document.createElement('td');
+                let input = document.createElement('input')
+                row.appendChild(column);
+                column.appendChild(input);
+                input.setAttribute('readonly', '')
+                input.setAttribute('value', a[i][j])
+            }
+        }
+    } else {
+        var p = document.createElement('p');
+        elemento_pai.appendChild(p);
+        p.innerText = "Determinante = " + a;
+    }
 }

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matrizes</title>
-    <link rel="stylesheet" href="estilo.css">
+    <!--<link rel="stylesheet" href="estilo.css">-->
     <script src="scripts.js"></script>
 </head>
 <body>
     <div id="options">
         <label for="ordem"> Ordem da Matriz</label>
-        <input type="number" id="ordem"></Input>
+        <input type="number" id="ordem" onkeyup="createTable()"></Input>
         <label for="op">Operações</label>
         <select name="op" id="op" onchange="ops()">
             <option value="0"> Escolha</option>
@@ -20,7 +20,6 @@
             <option value="4">Subtração</option>
             <option value="5">Multiplicação</option>
         </select>
-        <button onclick="createTable()">Enviar</button>
     </div>
 
     <br><br>
@@ -30,5 +29,9 @@
     <br><br>
 
     <div id="table2"></div>
+
+    <br><br>
+
+    <div id="result"></div>
 </body>
 </html>
