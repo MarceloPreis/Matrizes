@@ -50,6 +50,10 @@ function ops() {
     for (var i = 0; i < ordem; i++) {
         a[i] = [];
         for (var j = 0; j < ordem; j++) {
+            if (document.getElementById('a' + i + j).value == '') {
+                alert('PREENCHA TODOS OS CAMPOS');
+                return;
+            }
             a[i][j] = parseInt(document.getElementById('a' + i + j).value);
         }
     }
@@ -57,7 +61,12 @@ function ops() {
     for (var i = 0; i < ordem; i++) {
         b[i] = [];
         for (var j = 0; j < ordem; j++) {
+            if(document.getElementById('b' + i + j) == '' && (op !== 1 || op !== 2)){
+                alert('PREENCHA TODOS OS CAMPOS')
+                return;
+            }
             b[i][j] = parseInt(document.getElementById('b' + i + j).value);
+            
         }
     }
 
@@ -186,8 +195,14 @@ function mult(a, b) {
 function resultado(a) {
     
     var elemento_pai = document.getElementById('result');
-    elemento_pai.removeChild());
-    var table = createElement('table')
+    var table = document.getElementById('tableResult');
+    table.remove();
+
+    table = document.createElement('table');
+
+    elemento_pai.innerText = 'Resultado: ';   
+    elemento_pai.appendChild(table);
+
     table.setAttribute('id', 'tableResult')
     var ordem = a.length;
 
